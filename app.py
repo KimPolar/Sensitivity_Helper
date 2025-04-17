@@ -13,8 +13,8 @@ class PSAPanel(wx.Panel):
         title.SetFont(wx.Font(12, wx.FONTFAMILY_DEFAULT, wx.NORMAL, wx.BOLD))
         vbox.Add(title, 0, wx.ALL, 10)
 
-        self.input_sense = wx.TextCtrl(self, value="1.0")
-        vbox.Add(wx.StaticText(self, label="초기 감도 (예: 1.25):"), 0, wx.LEFT | wx.TOP, 10)
+        self.input_sense = wx.TextCtrl(self, value="50.0")
+        vbox.Add(wx.StaticText(self, label="초기 감도 (예: 50):"), 0, wx.LEFT | wx.TOP, 10)
         vbox.Add(self.input_sense, 0, wx.EXPAND | wx.ALL, 10)
 
         btn_start = wx.Button(self, label="PSA 테스트 시작")
@@ -51,7 +51,7 @@ class PSAPanel(wx.Panel):
 
         dlg = wx.MessageDialog(self,
             f"현재 감도: {sense:.2f}\n\n"
-            f"🔽 Lower: {low} ~ 기본: {sense:.2f}\n"
+            f"🔽 Lower: {low}\n"
             f"🔼 Higher: {high}", f"PSA 단계 {step}",
             wx.YES_NO | wx.ICON_QUESTION)
 
@@ -66,6 +66,7 @@ class PSAPanel(wx.Panel):
 
         if step == 7:
             wx.MessageBox(f"🎉 최종 추천 감도: {next_sense}", "PSA 완료", wx.OK | wx.ICON_INFORMATION)
+            self.input_sense.SetValue(str(next_sense))
         else:
             self.psa_step(next_sense, step + 1)
 
