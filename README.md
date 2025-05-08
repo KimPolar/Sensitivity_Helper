@@ -12,4 +12,5 @@ PSA 테스트와 DPI 변환 기능을 GUI로 제공합니다.
 ## 라이선스
 
 MIT License
-Copyright © 2025 KimPolar
+
+Copyright (c) 2025 KimPolar
